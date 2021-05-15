@@ -3,7 +3,7 @@ from django.db import models
 class Survey(models.Model):
     title = models.CharField("Название опроса", max_length=100)
     description = models.CharField("Описание", max_length=200)
-    begining_date = models.DateTimeField("Начало опроса")
+    beginning_date = models.DateTimeField("Начало опроса")
     completion_date = models.DateTimeField("Окончание опроса")
 
     def str(self):
