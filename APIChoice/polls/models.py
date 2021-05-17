@@ -8,7 +8,7 @@ class Survey(models.Model):
     beginning_date = models.DateTimeField("Начало опроса")
     completion_date = models.DateTimeField("Окончание опроса")
 
-    def str(self):
+    def __str__(self):
         return self.title
 
 
@@ -16,7 +16,7 @@ class Survey(models.Model):
 class TypeQuestion(models.Model):
     title = models.CharField("Тип вопроса", max_length=100)
 
-    def str(self):
+    def __str__(self):
         return self.title
 
 
@@ -34,7 +34,7 @@ class Question(models.Model):
         verbose_name="Тип вопроса",
         on_delete=models.CASCADE)
 
-    def str(self):
+    def __str__(self):
         return f"{self.question_text} к опросу {self.survey}"
 
 
@@ -47,7 +47,7 @@ class Choice(models.Model):
     choice_text = models.CharField("Ответ",max_length=200)
     number_choice = models.PositiveSmallIntegerField("Номер ответа")
 
-    def str(self):
+    def __str__(self):
         return self.choice_text
 
 

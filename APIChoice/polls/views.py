@@ -28,9 +28,14 @@ class QuestionnaireCreateViewSet(viewsets.ModelViewSet):
     serializer_class = QuestionnaireCreateSerializer
 
 
+
+#class QuestionnaireDetailView(viewsets.ModelViewSet):
+
+
+
 class AnswerCreateViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
-        answers = Answer.objects.all()
+        answers = Answer.objects.get()
         return answers
     serializer_class = AnswerCreateSerializer
 
