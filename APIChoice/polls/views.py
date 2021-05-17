@@ -2,8 +2,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import viewsets
-from .models import Survey
-from .serializers import SurveyListSerializer
+from .models import Survey,Answer
+from .serializers import SurveyListSerializer, QuestionnaireCreateSerializer, AnswerCreateSerializer
 from datetime import datetime
 
 class SurveyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -16,3 +16,23 @@ class SurveyViewSet(viewsets.ReadOnlyModelViewSet):
         )
         return surveys
     serializer_class = SurveyListSerializer
+
+
+class QuestionnaireCreateViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        surveys = Survey.objects.filter(
+            beginning_date__lte=datetime.now()).filter(
+            completion_date__gte=datetime.now()
+        )
+        return surveys
+    serializer_class = QuestionnaireCreateSerializer
+
+
+class AnswerCreateViewSet(viewsets.ModelViewSet):
+    def get_queryset(self):
+        answers = Answer.objects.all()
+        return answers
+    serializer_class = AnswerCreateSerializer
+
+
+
