@@ -43,7 +43,8 @@ class Choice(models.Model):
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
-        verbose_name="Выберите вопрос")
+        verbose_name="Выберите вопрос",
+        related_name="choices")
     choice_text = models.CharField("Ответ",max_length=200)
     number_choice = models.PositiveSmallIntegerField("Номер ответа")
 
