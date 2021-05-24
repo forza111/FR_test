@@ -74,6 +74,21 @@ class AnswerDetailSerializer(serializers.ModelSerializer):
         model = Answer
         fields = ["question", "answer"]
 
+class QuestionForAnswerSerializer(serializers.ModelSerializer):
+    '''Сериалиизатор для ответов'''
+    class Meta:
+        model = Question
+        fields = '__all__'
+
+
+class AaaaDetailSerializer(serializers.ModelSerializer):
+    '''Ответы на вопросы'''
+    question = QuestionDetailForAnswerSerializer(read_only=True)
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
 
 class QuestionnaireDetailSerializer(serializers.ModelSerializer):
     '''Информация об опросном листе'''
@@ -83,3 +98,4 @@ class QuestionnaireDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Questionnaire
         fields = ["id","user_id", "survey", "ans"]
+

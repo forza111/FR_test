@@ -5,7 +5,7 @@ from rest_framework import viewsets
 from .models import Survey,Answer, Questionnaire
 from .serializers import SurveyListSerializer, QuestionnaireCreateSerializer, \
     AnswerCreateSerializer, SurveyDetailSerializer, QuestionnaireDetailSerializer, \
-    QuestionnaireListSerializer
+    QuestionnaireListSerializer, AnswerDetailSerializer,AaaaDetailSerializer
 from datetime import datetime
 
 class SurveyViewSet(viewsets.ReadOnlyModelViewSet):
@@ -57,4 +57,9 @@ class AnswerCreateViewSet(viewsets.ModelViewSet):
     serializer_class = AnswerCreateSerializer
 
 
+class AnswerChoiceViewSet(viewsets.ModelViewSet):
+    queryset = Answer.objects.all()
+    serializer_class = AaaaDetailSerializer
 
+    def put(self,request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
