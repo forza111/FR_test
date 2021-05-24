@@ -82,11 +82,11 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
     '''Написание ответов на вопросы'''
     question = QuestionDetailForAnswerSerializer(read_only=True)
 
-    def validate_answer(self,value):
+    '''def validate_answer(self,value):
         if Answer.objects.filter(question.type_question.title == "Выбор"):
             if '1' not in value:
                 raise serializers.ValidationError("")
-            return value
+            return value'''
 
     class Meta:
         model = Answer

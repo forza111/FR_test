@@ -30,7 +30,8 @@ class SurveyViewSet(viewsets.ModelViewSet):
 
 class QuestionnaireDetailView(viewsets.ModelViewSet):
     def get_queryset(self):
-        questionnaire = Questionnaire.objects.all()
+        questionnaire = Questionnaire.objects.all().filter(survey__beginning_date__lte=datetime.now()).filter(
+            survey__completion_date__gte=datetime.now())
         return questionnaire
 
     def get_serializer_class(self):
