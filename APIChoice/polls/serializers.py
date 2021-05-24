@@ -1,13 +1,6 @@
 from rest_framework import serializers
 from .models import Survey, Questionnaire, Answer, Question, Choice
 
-class SurveyListSerializer(serializers.ModelSerializer):
-    '''Список активных опросов'''
-
-    class Meta:
-        model = Survey
-        fields = "__all__"
-
 
 class ChoiceListSerializer(serializers.ModelSerializer):
     '''Варианты выбора'''
@@ -17,13 +10,14 @@ class ChoiceListSerializer(serializers.ModelSerializer):
 
 
 class QuestionDetailSerializer(serializers.ModelSerializer):
+
     type_question = serializers.SlugRelatedField(slug_field="title", read_only=True)
     choices = ChoiceListSerializer(many=True)
-
 
     class Meta:
         model = Question
         fields = ["number_question","question_text","type_question", "choices"]
+
 
 class SurveyDetailSerializer(serializers.ModelSerializer):
     '''Подробная информация о опросе'''
@@ -34,6 +28,23 @@ class SurveyDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class SurveyListSerializer(serializers.ModelSerializer):
+    '''Список активных опросов'''
+
+    class Meta:
+        model = Survey
+        fields = "__all__"
+
+
+class QuestionnaireListSerializer(serializers.ModelSerializer):
+    '''Вывод списка опросных листов'''
+    survey = serializers.SlugRelatedField(slug_field='title', read_only=True)
+
+    class Meta:
+        model = Questionnaire
+        fields = "__all__"
+
+
 class QuestionnaireCreateSerializer(serializers.ModelSerializer):
     '''Создание опросного листа'''
 
@@ -41,26 +52,11 @@ class QuestionnaireCreateSerializer(serializers.ModelSerializer):
         model = Questionnaire
         fields = "__all__"
 
-class AnswerCreateSerializer(serializers.ModelSerializer):
-    '''Заполнение ответов'''
-
-    class Meta:
-        model = Answer
-        fields = "__all__"
-
-class QuestionnaireListSerializer(serializers.ModelSerializer):
-    '''Вывод списка опросных листов'''
-
-    class Meta:
-        model = Questionnaire
-        fields = "__all__"
 
 class QuestionDetailForAnswerSerializer(serializers.ModelSerializer):
     '''Вопросы для опросника'''
     choices = ChoiceListSerializer(many=True)
     type_question = serializers.SlugRelatedField(slug_field="title", read_only=True)
-
-
 
     class Meta:
         model = Question
@@ -74,6 +70,7 @@ class AnswerDetailSerializer(serializers.ModelSerializer):
         model = Answer
         fields = ["question", "answer"]
 
+
 class QuestionForAnswerSerializer(serializers.ModelSerializer):
     '''Сериалиизатор для ответов'''
     class Meta:
@@ -81,9 +78,15 @@ class QuestionForAnswerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AaaaDetailSerializer(serializers.ModelSerializer):
-    '''Ответы на вопросы'''
+class AnswerCreateSerializer(serializers.ModelSerializer):
+    '''Написание ответов на вопросы'''
     question = QuestionDetailForAnswerSerializer(read_only=True)
+
+    def validate_answer(self,value):
+        if Answer.objects.filter(question.type_question.title == "Выбор"):
+            if '1' not in value:
+                raise serializers.ValidationError("")
+            return value
 
     class Meta:
         model = Answer
@@ -99,3 +102,16 @@ class QuestionnaireDetailSerializer(serializers.ModelSerializer):
         model = Questionnaire
         fields = ["id","user_id", "survey", "ans"]
 
+
+
+class AnswerCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+    def validate_ans(self,value):
+         if Answer.objects.get(pk=...).question.type_question.title == "Выбор":
+            if '1' not in value:
+                raise serializers.ValidationError("Ошибка")
+            return value
