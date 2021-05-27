@@ -10,5 +10,9 @@ urlpatterns = ([
     path("createanswer/<int:pk>", views.AnswerCreateViewSet.as_view({'patch': 'partial_update'})),
     path("admin/survey/", admin.AdminSurveyViewSet.as_view({'get': 'list'})),
     path("admin/createsurvey/", admin.AdminSurveyViewSet.as_view({'post': 'create'})),
-    path("admin/change_survey/<int:pk>", admin.AdminSurveyViewSet.as_view({'patch': '[partial_update,retrieve]'})),
+    path("admin/change_survey/<int:pk>", admin.AdminSurveyViewSet.as_view({'patch': 'partial_update',
+                                                                           "get":"retrieve",
+                                                                           "delete": "destroy"})),
+    path("admin/questions/", admin.AdminQuestionViewSet.as_view({'get': 'list'})),
+    path("admin/createquestion/", admin.AdminQuestionViewSet.as_view({'post': 'create'})),
 ])

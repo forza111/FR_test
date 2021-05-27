@@ -28,12 +28,14 @@ class SurveyDetailSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+
 class SurveyListSerializer(serializers.ModelSerializer):
     '''Список активных опросов'''
 
     class Meta:
         model = Survey
         fields = "__all__"
+        read_only_fields = ("beginning_date",)
 
 
 class QuestionnaireListSerializer(serializers.ModelSerializer):
