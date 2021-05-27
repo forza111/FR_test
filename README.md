@@ -14,3 +14,14 @@ __*Задача: спроектировать и разработать API дл
 - *получение пройденных пользователем опросов с детализацией по ответам (что выбрано) по ID уникальному пользователя*
 
 Использовать следующие технологии: Django 2.2.10, Django REST framework.
+
+## Как использовать
+
+    Create a virtual environment: virtualenv -p python3 env
+    Activate the virtual environment: source env/bin/activate
+    Install the requirements: pip install -r requirements.txt
+    Create initial DB migrations: python manage.py migrate
+    Load data to DB: python manage.py loaddata credit/fixtures/db.json
+    Run server: python manage.py runserver
+    Login: http://127.0.0.1:8000/admin/
+    Open API documentation: http://127.0.0.1:8000/
