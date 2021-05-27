@@ -80,7 +80,7 @@ class AnswerDetailSerializer(serializers.ModelSerializer):
     question = QuestionDetailForAnswerSerializer()
     class Meta:
         model = Answer
-        fields = ["question", "answer"]
+        fields = ["question", "answer", "id"]
 
 
 class QuestionForAnswerSerializer(serializers.ModelSerializer):
