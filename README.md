@@ -23,12 +23,12 @@ __*Задача: спроектировать и разработать API дл
 - Создайте миграции: ```python manage.py migrate```
 - Загрузите БД: ```python manage.py loaddata db.json```
 - Запустите сервер: ```python manage.py runserver```
-- Откройте API документацию: [http://127.0.0.1:8000/api/swagger]
+- Откройте API документацию: http://127.0.0.1:8000/api/swagger
 
 
 ## Информация для входа
 
 В системе есть 1 роль - администратор.  
-Авторизация при переходе на url ```http://127.0.0.1:8000/api/admin/...```  
+Авторизация при переходе на url http://127.0.0.1:8000/api/admin/
 *username* : ```admin```  
 *password* : ```admin```  
