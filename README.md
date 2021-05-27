@@ -23,7 +23,7 @@ __*Задача: спроектировать и разработать API дл
 - Создайте миграции: ```python manage.py migrate```
 - Загрузите БД: ```python manage.py loaddata db.json```
 - Запустите сервер: ```python manage.py runserver```
-- Откройте API документацию: ```http://127.0.0.1:8000/api/swagger```
+- Откройте API документацию: [http://127.0.0.1:8000/api/swagger]
 
 
 ## Информация для входа
