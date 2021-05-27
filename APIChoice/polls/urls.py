@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views,admin
+from APIChoice.yasg import urlpatterns as doc_urls
 
 urlpatterns = ([
     path("survey/", views.SurveyViewSet.as_view({'get': 'list'})),
@@ -16,11 +17,14 @@ urlpatterns = ([
     path("admin/questions/", admin.AdminQuestionViewSet.as_view({'get': 'list'})),
     path("admin/create_question/", admin.AdminQuestionViewSet.as_view({'post': 'create'})),
     path("admin/change_question/<int:pk>", admin.AdminQuestionViewSet.as_view({'patch': 'partial_update',
-                                                                           "get":"retrieve",
-                                                                           "delete": "destroy"})),
+                                                                                "get":"retrieve",
+                                                                                "delete": "destroy"})),
     path("admin/choices/", admin.AdminChoiceViewSet.as_view({'get': 'list'})),
     path("admin/create_choice/", admin.AdminChoiceViewSet.as_view({'post': 'create'})),
     path("admin/change_choice/<int:pk>", admin.AdminChoiceViewSet.as_view({'patch': 'partial_update',
                                                                            "get":"retrieve",
                                                                            "delete": "destroy"})),
 ])
+
+
+urlpatterns += doc_urls

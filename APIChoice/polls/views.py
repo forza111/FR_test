@@ -6,7 +6,7 @@ from .serializers import SurveyListSerializer, \
 from datetime import datetime
 
 class SurveyViewSet(viewsets.ModelViewSet):
-    '''Список  активных опросов'''
+    '''Активные опросы'''
 
     def get_queryset(self):
         surveys = Survey.objects.filter(
@@ -26,6 +26,7 @@ class SurveyViewSet(viewsets.ModelViewSet):
 
 
 class QuestionnaireDetailView(viewsets.ModelViewSet):
+    '''Подробная информация об опросе'''
     def get_queryset(self):
         questionnaire = Questionnaire.objects.all().filter(survey__beginning_date__lte=datetime.now()).filter(
             survey__completion_date__gte=datetime.now())
@@ -40,6 +41,7 @@ class QuestionnaireDetailView(viewsets.ModelViewSet):
 
 
 class AnswerCreateViewSet(viewsets.ModelViewSet):
+    '''Прохождение опроса'''
     def get_queryset(self):
         answers = Answer.objects.all()
         return answers
