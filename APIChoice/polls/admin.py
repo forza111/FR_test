@@ -3,7 +3,7 @@ from .models import Survey, Question, Choice, TypeQuestion, Questionnaire, Answe
 from rest_framework import viewsets
 from .serializers import SurveyListSerializer, \
     AnswerCreateSerializer, SurveyDetailSerializer, QuestionnaireDetailSerializer, \
-    QuestionnaireListSerializer,QuestionnaireCreateSerializer, QuestionForAnswerSerializer, QuestionDetailSerializer
+    QuestionnaireListSerializer,QuestionnaireCreateSerializer, QuestionForAnswerSerializer, QuestionDetailSerializer, ChoiceListSerializer
 from rest_framework import permissions,authentication
 
 admin.site.register(Survey)
@@ -25,7 +25,18 @@ class AdminSurveyViewSet(AdminModelViewSet):
     serializer_class = SurveyListSerializer
 
 
+class AdminSurveyDetailViewSet(AdminModelViewSet):
+    queryset = Survey.objects.all()
+    serializer_class = SurveyDetailSerializer
+
+
 class AdminQuestionViewSet(AdminModelViewSet):
     queryset = Question.objects.all()
-    serializer_class = QuestionDetailSerializer
+    serializer_class = QuestionForAnswerSerializer
+
+
+class AdminChoiceViewSet(AdminModelViewSet):
+    queryset = Choice.objects.all()
+    serializer_class = ChoiceListSerializer
+
 

@@ -2,17 +2,27 @@ from rest_framework import serializers
 from .models import Survey, Questionnaire, Answer, Question, Choice
 
 
-class ChoiceListSerializer(serializers.ModelSerializer):
+class ChoiceListSpecificsSerializer(serializers.ModelSerializer):
     '''Варианты выбора'''
     class Meta:
         model = Choice
         fields = ["number_choice", "choice_text"]
 
 
+class ChoiceListSerializer(serializers.ModelSerializer):
+    '''Создание выбора ответа на вопросы'''
+
+    class Meta:
+        model = Choice
+        fields = "__all__"
+
+
+
+
 class QuestionDetailSerializer(serializers.ModelSerializer):
 
     type_question = serializers.SlugRelatedField(slug_field="title", read_only=True)
-    choices = ChoiceListSerializer(many=True)
+    choices = ChoiceListSpecificsSerializer(many=True)
 
     class Meta:
         model = Question
@@ -21,7 +31,7 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
 
 class SurveyDetailSerializer(serializers.ModelSerializer):
     '''Подробная информация о опросе'''
-    quest = QuestionDetailSerializer(many=True)
+    quest = QuestionDetailSerializer(many=True, read_only = True)
 
     class Meta:
         model = Survey
@@ -57,7 +67,7 @@ class QuestionnaireCreateSerializer(serializers.ModelSerializer):
 
 class QuestionDetailForAnswerSerializer(serializers.ModelSerializer):
     '''Вопросы для опросника'''
-    choices = ChoiceListSerializer(many=True)
+    choices = ChoiceListSpecificsSerializer(many=True)
     type_question = serializers.SlugRelatedField(slug_field="title", read_only=True)
 
     class Meta:
