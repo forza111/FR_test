@@ -4,7 +4,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$150000$WmJ1wbzBZMC7$FSD7/slTzBwyA/glLavfqv1iyMlTif3ipkCFiRn17OY=",
-    "last_login": "2021-05-15T08:43:13.997Z",
+    "last_login": "2021-05-17T07:38:05.178Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -26,13 +26,21 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "pvqyrgv8ceoih90bjlt7zs32bwp7pr3x",
+  "fields": {
+    "session_data": "OWFjY2U5ZWNhYWY3ZGYxNjI3ZmY5ODM1NjdhNjk0YTViN2VhNzlhMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIwYWVkYmU2N2ZkYTE3OTk0NzUzYTcyOGY5ZDZkMjc5MzkzZWFmOTg0In0=",
+    "expire_date": "2021-05-31T07:38:05.479Z"
+  }
+},
+{
   "model": "polls.survey",
   "pk": 1,
   "fields": {
     "title": "\u041e\u0446\u0435\u043d\u043a\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0438 \u041c\u041e\u0421\u0425",
     "description": "\u041e\u0446\u0435\u043d\u043a\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0438, \u043f\u0440\u043e\u0445\u043e\u0434\u0438\u0432\u0448\u0430\u044f \u0432 \u0432\u044b\u0441\u0442\u0430\u0432\u043e\u0447\u043d\u043e\u043c \u0437\u0430\u043b\u0435 \u041c\u041e\u0421\u0425 \u0420\u043e\u0441\u0441\u0438\u0438 15.04.2021",
     "beginning_date": "2021-04-15T09:38:33Z",
-    "completion_date": "2021-04-16T09:38:57Z"
+    "completion_date": "2027-04-16T09:38:58Z"
   }
 },
 {
@@ -52,17 +60,7 @@
     "title": "\u0423\u0440\u043e\u0432\u0435\u043d\u044c \u0436\u0438\u0437\u043d\u0438 \u0432 \u0420\u043e\u0441\u0441\u0438\u0438",
     "description": "\u041e\u0446\u0435\u043d\u043a\u0430 \u0443\u0440\u043e\u0432\u043d\u044f \u0436\u0438\u0437\u043d\u0438 \u0437\u0430 \u043f\u0440\u0435\u0434\u0435\u043b\u0430\u043c\u0438 \u041c\u041a\u0410\u0414",
     "beginning_date": "2022-05-15T09:50:35Z",
-    "completion_date": "2023-05-15T09:50:36Z"
-  }
-},
-{
-  "model": "polls.survey",
-  "pk": 4,
-  "fields": {
-    "title": "\u041f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u044f \u043c\u0435\u0447\u0442\u044b",
-    "description": "\u041e\u043f\u0440\u043e\u0441 \u0436\u0438\u0442\u0435\u043b\u0435\u0439 \u0420\u0424, \u0441\u0432\u044f\u0437\u0430\u043d\u043d\u044b\u0439 \u0441 \u043f\u0440\u043e\u0444\u0435\u0441\u0441\u0438\u0435\u0439. \u0416\u0435\u043b\u0430\u0435\u043c\u044b\u0439 \u043e\u043a\u043b\u0430\u0434, \u043e\u0431\u044f\u0437\u0430\u043d\u043d\u043e\u0441\u0442\u0438, \u0440\u0430\u0431\u043e\u0447\u0438\u0439 \u0433\u0440\u0430\u0444\u0438\u043a \u0438 \u0442.\u0434.",
-    "beginning_date": "2021-05-15T09:53:09Z",
-    "completion_date": "2023-05-15T09:53:12Z"
+    "completion_date": "2021-05-15T09:50:36Z"
   }
 },
 {
@@ -91,7 +89,7 @@
   "pk": 1,
   "fields": {
     "survey": 1,
-    "question_text": "\u0412\u044b \u0434\u0443\u043c\u0430\u0435\u0442\u0435?",
+    "question_text": "\u041a\u0430\u0440\u0442\u0438\u043d\u0430 \u043a\u0430\u043a\u043e\u0433\u043e \u0445\u0443\u0434\u043e\u0436\u043d\u0438\u043a\u0430 \u0438\u0437 \u0422\u041e\u041f 4 \u0432\u0430\u043c \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u043b\u0430\u0441\u044c \u0431\u043e\u043b\u044c\u0448\u0435 \u0432\u0441\u0435\u0433\u043e?",
     "number_question": 1,
     "type_question": 1
   }
@@ -101,9 +99,129 @@
   "pk": 2,
   "fields": {
     "survey": 1,
-    "question_text": "\u0410 \u043a\u0430\u043a \u0436\u0435?",
+    "question_text": "\u0412\u0430\u043c \u0431\u044b\u043b\u043e \u0443\u0434\u043e\u0431\u043d\u043e \u043f\u043e\u043f\u0430\u0441\u0442\u044c \u043d\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0443 \u043a 15 - 00?",
     "number_question": 2,
+    "type_question": 3
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 3,
+  "fields": {
+    "survey": 2,
+    "question_text": "\u0412\u0430\u043c \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u043b\u043e\u0441\u044c \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u0435 \u043d\u0430\u0448\u0435\u0433\u043e \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u043d\u0442\u0430 \u0410\u043d\u0434\u0440\u0435\u044f?",
+    "number_question": 1,
     "type_question": 1
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 4,
+  "fields": {
+    "survey": 2,
+    "question_text": "\u0427\u0442\u043e \u0431\u044b \u0432\u044b \u043c\u043e\u0433\u043b\u0438 \u043f\u043e\u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u0442\u044c \u043d\u0430\u043c \u0443\u043b\u0443\u0447\u0448\u0438\u0442\u044c?",
+    "number_question": 2,
+    "type_question": 2
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 5,
+  "fields": {
+    "survey": 2,
+    "question_text": "\u041f\u043e\u0434\u0435\u043b\u0438\u0442\u0435\u0441\u044c \u043e\u0431\u0449\u0438\u043c \u0432\u043f\u0435\u0447\u0430\u0442\u043b\u0435\u043d\u0438\u0435\u043c",
+    "number_question": 3,
+    "type_question": 3
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "choice_text": "\u0421\u0442\u043e\u0439\u044f\u043d\u0435 \u0414\u0436\u0435\u0441\u0441\u0438\u043a\u0430",
+    "number_choice": 1
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "choice_text": "\u0418\u043e\u043d\u043e\u0432 \u0410\u043b\u0435\u043a\u0441\u0435\u0439",
+    "number_choice": 2
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 3,
+  "fields": {
+    "question": 3,
+    "choice_text": "\u0434\u0430",
+    "number_choice": 1
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 3,
+    "choice_text": "\u043d\u0435\u0442",
+    "number_choice": 2
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 3,
+    "choice_text": "\u0437\u0430\u0442\u0440\u0443\u0434\u043d\u044f\u044e\u0441\u044c \u043e\u0442\u0432\u0435\u0442\u0438\u0442\u044c",
+    "number_choice": 3
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 4,
+    "choice_text": "\u041e\u0431\u0440\u0430\u0442\u0438\u0442\u044c \u0432\u043d\u0438\u043c\u0430\u043d\u0438\u0435 \u043d\u0430 \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u044e\u0449\u0435\u0433\u043e \u043f\u0435\u0440\u0441\u043e\u043d\u0430\u043b\u0430 \u0434\u043b\u044f \u043c\u0438\u043d\u0438\u043c\u0438\u0437\u0430\u0446\u0438\u0438 \u043e\u0436\u0438\u0434\u0430\u043d\u0438\u044f",
+    "number_choice": 1
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 7,
+  "fields": {
+    "question": 4,
+    "choice_text": "\u041f\u0435\u0440\u0435\u0441\u043c\u043e\u0442\u0440\u0435\u0442\u044c \u043f\u0440\u0430\u0439\u0441 \u043b\u0438\u0441\u0442, \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u0434\u043e\u0440\u043e\u0433\u043e \u0441\u0442\u043e\u044f\u0442 \u0432\u0430\u0448\u0438 \u0443\u0441\u043b\u0443\u0433\u0438",
+    "number_choice": 2
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 8,
+  "fields": {
+    "question": 4,
+    "choice_text": "\u0423\u043b\u0443\u0447\u0448\u0438\u0442\u044c \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u043e \u0440\u0435\u043c\u043e\u043d\u0442\u0430, \u043e\u0447\u0435\u043d\u044c \u043d\u0435 \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u043b\u043e\u0441\u044c",
+    "number_choice": 3
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 9,
+  "fields": {
+    "question": 1,
+    "choice_text": "\u0421\u043a\u0430\u0447\u043e\u043a \u0410\u043d\u0430\u0441\u0442\u0430\u0441\u0438\u044f",
+    "number_choice": 3
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 10,
+  "fields": {
+    "question": 1,
+    "choice_text": "\u0414\u0443\u0431\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u041c\u0430\u0440\u0438\u044f",
+    "number_choice": 4
   }
 },
 {
@@ -116,7 +234,7 @@
 },
 {
   "model": "polls.questionnaire",
-  "pk": 8,
+  "pk": 12,
   "fields": {
     "user_id": 1,
     "survey": 1
@@ -124,18 +242,36 @@
 },
 {
   "model": "polls.answer",
-  "pk": 7,
+  "pk": 19,
   "fields": {
-    "questionnaire": 8,
+    "questionnaire": 5,
+    "question": 1,
+    "answer": "da"
+  }
+},
+{
+  "model": "polls.answer",
+  "pk": 20,
+  "fields": {
+    "questionnaire": 5,
+    "question": 1,
+    "answer": "django"
+  }
+},
+{
+  "model": "polls.answer",
+  "pk": 25,
+  "fields": {
+    "questionnaire": 12,
     "question": 1,
     "answer": null
   }
 },
 {
   "model": "polls.answer",
-  "pk": 8,
+  "pk": 26,
   "fields": {
-    "questionnaire": 8,
+    "questionnaire": 12,
     "question": 2,
     "answer": null
   }
@@ -463,6 +599,240 @@
     "object_repr": "Answer object (9)",
     "action_flag": 3,
     "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2021-05-17T07:50:13.647Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "18",
+    "object_repr": "Answer object (18)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2021-05-17T07:50:13.945Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "17",
+    "object_repr": "Answer object (17)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2021-05-17T07:50:14.062Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "16",
+    "object_repr": "Answer object (16)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 29,
+  "fields": {
+    "action_time": "2021-05-17T07:50:14.188Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "13",
+    "object_repr": "Answer object (13)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 30,
+  "fields": {
+    "action_time": "2021-05-17T07:50:14.321Z",
+    "user": 1,
+    "content_type": 12,
+    "object_id": "12",
+    "object_repr": "Answer object (12)",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 31,
+  "fields": {
+    "action_time": "2021-05-17T07:50:27.687Z",
+    "user": 1,
+    "content_type": 11,
+    "object_id": "9",
+    "object_repr": "(Survey object (1) \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f 1)",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 32,
+  "fields": {
+    "action_time": "2021-05-18T22:54:01.802Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "da",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 33,
+  "fields": {
+    "action_time": "2021-05-18T22:54:09.939Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "net",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 34,
+  "fields": {
+    "action_time": "2021-05-27T13:46:58.408Z",
+    "user": 1,
+    "content_type": 8,
+    "object_id": "1",
+    "object_repr": "\u041e\u0446\u0435\u043d\u043a\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0438 \u041c\u041e\u0421\u0425",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"completion_date\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 35,
+  "fields": {
+    "action_time": "2021-05-27T13:47:47.632Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "3",
+    "object_repr": "\u0412\u0430\u043c \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u043b\u043e\u0441\u044c \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u0435 \u043d\u0430\u0448\u0435\u0433\u043e \u043a\u043e\u043d\u0441\u0443\u043b\u044c\u0442\u0430\u043d\u0442\u0430 \u0410\u043d\u0434\u0440\u0435\u044f? \u043a \u043e\u043f\u0440\u043e\u0441\u0443 \u041e\u0446\u0435\u043d\u043a\u0430 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u044f \u0441\u0435\u0440\u0432\u0438\u0441\u043d\u043e\u0433\u043e \u0446\u0435\u043d\u0442\u0440\u0430 Apple",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"question_text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 36,
+  "fields": {
+    "action_time": "2021-05-27T13:51:21.043Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "4",
+    "object_repr": "\u0427\u0442\u043e \u0431\u044b \u0432\u044b \u043c\u043e\u0433\u043b\u0438 \u043f\u043e\u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u043e\u0432\u0430\u0442\u044c \u043d\u0430\u043c \u0443\u043b\u0443\u0447\u0448\u0438\u0442\u044c? \u043a \u043e\u043f\u0440\u043e\u0441\u0443 \u041e\u0446\u0435\u043d\u043a\u0430 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u044f \u0441\u0435\u0440\u0432\u0438\u0441\u043d\u043e\u0433\u043e \u0446\u0435\u043d\u0442\u0440\u0430 Apple",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 37,
+  "fields": {
+    "action_time": "2021-05-27T13:55:47.340Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "5",
+    "object_repr": "\u041f\u043e\u0434\u0435\u043b\u0438\u0442\u0435\u0441\u044c \u043e\u0431\u0449\u0438\u043c \u0432\u043f\u0435\u0447\u0430\u0442\u043b\u0435\u043d\u0438\u0435\u043c \u043a \u043e\u043f\u0440\u043e\u0441\u0443 \u041e\u0446\u0435\u043d\u043a\u0430 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0430 \u043e\u0431\u0441\u043b\u0443\u0436\u0438\u0432\u0430\u043d\u0438\u044f \u0441\u0435\u0440\u0432\u0438\u0441\u043d\u043e\u0433\u043e \u0446\u0435\u043d\u0442\u0440\u0430 Apple",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2021-05-27T14:13:24.402Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "1",
+    "object_repr": "\u041a\u0430\u0440\u0442\u0438\u043d\u0430 \u043a\u0430\u043a\u043e\u0433\u043e \u0445\u0443\u0434\u043e\u0436\u043d\u0438\u043a\u0430 \u0438\u0437 \u0422\u041e\u041f 4 \u0432\u0430\u043c \u043f\u043e\u043d\u0440\u0430\u0432\u0438\u043b\u0430\u0441\u044c \u0431\u043e\u043b\u044c\u0448\u0435 \u0432\u0441\u0435\u0433\u043e? \u043a \u043e\u043f\u0440\u043e\u0441\u0443 \u041e\u0446\u0435\u043d\u043a\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0438 \u041c\u041e\u0421\u0425",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"question_text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2021-05-27T14:14:06.347Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "1",
+    "object_repr": "\u0421\u0442\u043e\u0439\u044f\u043d\u0435 \u0414\u0436\u0435\u0441\u0441\u0438\u043a\u0430",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"choice_text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 40,
+  "fields": {
+    "action_time": "2021-05-27T14:14:19.578Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "2",
+    "object_repr": "\u0418\u043e\u043d\u043e\u0432 \u0410\u043b\u0435\u043a\u0441\u0435\u0439",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"choice_text\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 41,
+  "fields": {
+    "action_time": "2021-05-27T14:14:34.997Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "9",
+    "object_repr": "\u0421\u043a\u0430\u0447\u043e\u043a \u0410\u043d\u0430\u0441\u0442\u0430\u0441\u0438\u044f",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 42,
+  "fields": {
+    "action_time": "2021-05-27T14:14:48.617Z",
+    "user": 1,
+    "content_type": 9,
+    "object_id": "10",
+    "object_repr": "\u0414\u0443\u0431\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u041c\u0430\u0440\u0438\u044f",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 43,
+  "fields": {
+    "action_time": "2021-05-27T14:16:05.186Z",
+    "user": 1,
+    "content_type": 7,
+    "object_id": "2",
+    "object_repr": "\u0412\u0430\u043c \u0431\u044b\u043b\u043e \u0443\u0434\u043e\u0431\u043d\u043e \u043f\u043e\u043f\u0430\u0441\u0442\u044c \u043d\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0443 \u043a 15 - 00? \u043a \u043e\u043f\u0440\u043e\u0441\u0443 \u041e\u0446\u0435\u043d\u043a\u0430 \u0432\u044b\u0441\u0442\u0430\u0432\u043a\u0438 \u041c\u041e\u0421\u0425",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"question_text\", \"type_question\"]}}]"
   }
 }
 ]
