@@ -17,11 +17,18 @@ __*Задача: спроектировать и разработать API дл
 
 ## Как использовать
 
-    Create a virtual environment: virtualenv -p python3 env
-    Activate the virtual environment: source env/bin/activate
-    Install the requirements: pip install -r requirements.txt
-    Create initial DB migrations: python manage.py migrate
-    Load data to DB: python manage.py loaddata credit/fixtures/db.json
-    Run server: python manage.py runserver
-    Login: http://127.0.0.1:8000/admin/
-    Open API documentation: http://127.0.0.1:8000/
+- Создайте виртуальное окружение: ```virtualenv -p python3 env```
+- Активируйте виртуальное окружение: ```source env/bin/activate```
+- Установите зависимости: ```pip install -r requirements.txt```
+- Создайте миграции: ```python manage.py migrate```
+- Загрузите БД: ```python manage.py loaddata db.json```
+- Запустите сервер: ```python manage.py runserver```
+- Откройте API документацию: http://127.0.0.1:8000/api/swagger
+
+
+## Информация для входа
+
+В системе есть 1 роль - администратор.  
+Авторизация при переходе на url: http://127.0.0.1:8000/api/admin/  
+*username* : ```admin```  
+*password* : ```admin```  
