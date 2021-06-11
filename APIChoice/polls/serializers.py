@@ -48,6 +48,14 @@ class SurveyListSerializer(serializers.ModelSerializer):
         read_only_fields = ("beginning_date",)
 
 
+class SurveyCreateSerializer(serializers.ModelSerializer):
+    '''Создание опроса'''
+
+    class Meta:
+        model = Survey
+        fields = "__all__"
+
+
 class QuestionnaireListSerializer(serializers.ModelSerializer):
     '''Вывод списка опросных листов'''
     survey = serializers.SlugRelatedField(slug_field='title', read_only=True)
