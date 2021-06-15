@@ -116,8 +116,20 @@ class TestDate():
         assert res.status_code == 200
         assert res.json()['title'] == database['normal_survey']['title']
         assert res.json()['description'] == database['normal_survey']['description']
-        assert res.json()['beginning_date'] == database['normal_survey']['beginning_date']
+        assert res.json()['beginning_date'][:-1] == database['normal_survey']['beginning_date']
 
     def test_get_future_survey(self):
         res = requests.get(API_URL + '/api/survey/%d' % id['future_survey'])
         assert res.status_code == 404
+
+    def change_current_survey(self):
+        current_survey = {
+        "title": "test_title_change",
+        "description": "test_description_change",
+        "beginning_date": str(current_time.isoformat()),
+        "completion_date": str(future_time_1_day),
+        }
+        res = requests.patch(API_URL + '/api/change_survey/%d' % id['normal_survey'],
+                             json = current_survey)
+        assert res.status_code == 201
+        assert res.json() == database['normal_survey']
