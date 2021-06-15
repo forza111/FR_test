@@ -10,11 +10,14 @@ import datetime
 basicAuth = HTTPBasicAuth(ADMIN_PASSWORD, ADMIN_PASSWORD)
 
 
-current_time = datetime.datetime.now()
-past_time_1 = current_time - datetime.timedelta(days=2)
-past_time_2 = current_time - datetime.timedelta(days=2)
-future_time_1 = current_time + datetime.timedelta(days=2)
-future_time_2 = current_time + datetime.timedelta(days=4)
+current_time = datetime.datetime.utcnow()
+
+past_time_1_day = current_time - datetime.timedelta(days=1)
+past_time_4_minutes = current_time - datetime.timedelta(minutes=4)
+past_time_5_minutes = current_time - datetime.timedelta(minutes=5)
+
+future_time_1_day = current_time + datetime.timedelta(days=1)
+future_time_2_day = current_time + datetime.timedelta(days=2)
 
 
 
@@ -22,45 +25,71 @@ database = {
     'normal_survey': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(past_time_1),
-        "completion_date": str(future_time_1),
+        "beginning_date": str(current_time),
+        "completion_date": str(future_time_1_day),
     },
-    'past_survey': {
+    'past_survey_1_day_ago': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(future_time_2),
-        "completion_date": str(future_time_1),
+        "beginning_date": str(past_time_1_day),
+        "completion_date": str(future_time_1_day),
+    },
+    'past_survey_5_minutes_ago': {
+        "title": "test_title",
+        "description": "test_description",
+        "beginning_date": str(past_time_5_minutes),
+        "completion_date": str(future_time_1_day),
+    },
+    'past_survey_4_minutes_ago': {
+        "title": "test_title",
+        "description": "test_description",
+        "beginning_date": str(past_time_4_minutes),
+        "completion_date": str(future_time_1_day),
     },
     'future_survey': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(future_time_1),
-        "completion_date": str(future_time_2),
+        "beginning_date": str(future_time_1_day),
+        "completion_date": str(future_time_2_day),
     },
 
 }
 
+
+id = {}
 
 @pytest.fixture
 def create_normal_survey():
     res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['normal_survey'])
     assert res.status_code == 201
     data = res.json()
-    id = data['id']
+    id['normal_survey'] = data['id']
     yield
-    rs = requests.delete(API_URL + '/api/admin/change_survey/%d' % id, auth=basicAuth)
-    assert res.status_code == 201
+    rs = requests.delete(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'], auth=basicAuth)
+    assert rs.status_code == 204
 
 
 @pytest.fixture
-def create_past_survey():
-    res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['past_survey'])
+def create_past_survey_1_day_ago():
+    res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['past_survey_1_day_ago'])
+    assert res.status_code == 500
+
+
+@pytest.fixture
+def create_past_survey_5_minutes_ago():
+    res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['past_survey_5_minutes_ago'])
+    assert res.status_code == 500
+
+
+@pytest.fixture
+def create_past_survey_4_minutes_ago():
+    res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['past_survey_4_minutes_ago'])
     assert res.status_code == 201
     data = res.json()
-    id = data['id']
+    id['past_survey_4_minutes_ago'] = data['id']
     yield
-    re = requests.delete(API_URL + '/api/admin/change_survey/%d' % id, auth=basicAuth)
-    assert res.status_code == 201
+    rs = requests.delete(API_URL + '/api/admin/change_survey/%d' % id['past_survey_4_minutes_ago'], auth=basicAuth)
+    assert rs.status_code == 204
 
 
 @pytest.fixture()
@@ -68,17 +97,27 @@ def create_future_survey():
     res = requests.post(API_URL + '/api/admin/create_survey/', auth=basicAuth, json=database['future_survey'])
     assert res.status_code == 201
     data = res.json()
-    id = data['id']
+    id['future_survey'] = data['id']
     yield
-    re = requests.delete(API_URL + '/api/admin/change_survey/%d' % id, auth=basicAuth)
-    assert res.status_code == 201
+    rs = requests.delete(API_URL + '/api/admin/change_survey/%d' % id['future_survey'], auth=basicAuth)
+    assert rs.status_code == 204
 
 
 
 
 
 
-@pytest.mark.usefixtures('create_normal_survey','create_past_survey', 'create_future_survey')
+@pytest.mark.usefixtures('create_normal_survey','create_past_survey_1_day_ago',
+                         'create_past_survey_5_minutes_ago','create_past_survey_4_minutes_ago',
+                         'create_future_survey')
 class TestDate():
-    def test_1(self):
-        print('lol')
+    def test_get_current_survey(self):
+        res = requests.get(API_URL + '/api/survey/%d' % id['normal_survey'])
+        assert res.status_code == 200
+        assert res.json()['title'] == database['normal_survey']['title']
+        assert res.json()['description'] == database['normal_survey']['description']
+        #assert res.json()['beginning_date'] == database['normal_survey']['beginning_date']
+
+    def test_get_future_survey(self):
+        res = requests.get(API_URL + '/api/survey/%d' % id['future_survey'])
+        assert res.status_code == 404

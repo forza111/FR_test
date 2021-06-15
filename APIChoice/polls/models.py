@@ -1,12 +1,22 @@
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
+import datetime
 
 class Survey(models.Model):
     title = models.CharField("Название опроса", max_length=100)
     description = models.CharField("Описание", max_length=200)
     beginning_date = models.DateTimeField("Начало опроса")
     completion_date = models.DateTimeField("Окончание опроса")
+
+    def save(self, *args, **kwargs):
+        date_five_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+        if self.beginning_date.isoformat() < date_five_minutes_ago.isoformat():
+            raise AttributeError("Дата начала опроса не должна превышать 5 минутный интервал "
+                                 "от текущей даты")
+        elif self.beginning_date > self.completion_date:
+            raise AttributeError("Дата начала опроса не может быть позже даты завершения.")
+        super(Survey, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

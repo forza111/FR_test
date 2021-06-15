@@ -1,18 +1,17 @@
-'''import requests
-import pytest
-from requests.auth import HTTPBasicAuth
+database = {
+    'normal_survey': {
+        "title": "test_title",
+        "description": "test_description",
+    },
+    'past_survey': {
+        "title": "test_title",
+        "description": "test_description",
+    },
+    'future_survey': {
+        "title": "test_title",
+        "description": "test_description",
+    },
 
-API_URL = 'http://127.0.0.1:8000'
-ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD = 'admin'
+}
 
-basicAuth = HTTPBasicAuth(ADMIN_PASSWORD, ADMIN_PASSWORD)
-
-@pytest.fixture()
-def some_data():
-    """Return answer to ultimate question."""
-    return 42
-
-def test_some_data(some_data):
-    """Use fixture return value in a test."""
-    assert some_data == 42'''
+print(type(database['normal_survey']['title']))
