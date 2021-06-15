@@ -12,12 +12,12 @@ basicAuth = HTTPBasicAuth(ADMIN_PASSWORD, ADMIN_PASSWORD)
 
 current_time = datetime.datetime.utcnow()
 
-past_time_1_day = current_time - datetime.timedelta(days=1)
-past_time_4_minutes = current_time - datetime.timedelta(minutes=4)
-past_time_5_minutes = current_time - datetime.timedelta(minutes=5)
+past_time_1_day = (current_time - datetime.timedelta(days=1)).isoformat()
+past_time_4_minutes = (current_time - datetime.timedelta(minutes=4)).isoformat()
+past_time_5_minutes = (current_time - datetime.timedelta(minutes=5)).isoformat()
 
-future_time_1_day = current_time + datetime.timedelta(days=1)
-future_time_2_day = current_time + datetime.timedelta(days=2)
+future_time_1_day = (current_time + datetime.timedelta(days=1)).isoformat()
+future_time_2_day = (current_time + datetime.timedelta(days=2)).isoformat()
 
 
 
@@ -25,7 +25,7 @@ database = {
     'normal_survey': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(current_time),
+        "beginning_date": str(current_time.isoformat()),
         "completion_date": str(future_time_1_day),
     },
     'past_survey_1_day_ago': {
@@ -116,7 +116,7 @@ class TestDate():
         assert res.status_code == 200
         assert res.json()['title'] == database['normal_survey']['title']
         assert res.json()['description'] == database['normal_survey']['description']
-        #assert res.json()['beginning_date'] == database['normal_survey']['beginning_date']
+        assert res.json()['beginning_date'] == database['normal_survey']['beginning_date']
 
     def test_get_future_survey(self):
         res = requests.get(API_URL + '/api/survey/%d' % id['future_survey'])
