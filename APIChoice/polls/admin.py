@@ -20,10 +20,15 @@ class AdminModelViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAdminUser]
 
 
-class AdminSurveyViewSet(AdminModelViewSet):
-    '''Опросы'''
+class AdminSurveyCreate(AdminModelViewSet):
+    '''Создание Опроса'''
     queryset = Survey.objects.all()
     serializer_class = SurveyCreateSerializer
+
+class AdminSurveyViewSet(AdminModelViewSet):
+    '''Опрос'''
+    queryset = Survey.objects.all()
+    serializer_class = SurveyListSerializer
 
 
 class AdminSurveyDetailViewSet(AdminModelViewSet):

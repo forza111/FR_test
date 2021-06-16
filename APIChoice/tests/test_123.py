@@ -121,13 +121,33 @@ class TestDate():
         res = requests.get(API_URL + '/api/survey/%d' % id['future_survey'])
         assert res.status_code == 404
 
-    '''def test_change_current_survey(self):
-        current_survey = {
-        "title": "test_title_change",
-        "description": "test_description_change",
-        "completion_date": future_time_1_day,
-        }
+    def test_change_title_current_survey(self):
+        current_survey = {"title": "test_title_change"}
         res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
                              json=current_survey)
         assert res.status_code == 200
-        assert res.json() == current_survey'''
+        new_current_survey = {**res.json(), **current_survey}
+        assert res.json() == new_current_survey
+
+    def test_change_title_with_description_current_survey(self):
+        current_survey = {
+            "title": "test_title_change_2",
+            "description": "test_description_change_2"}
+        res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
+                             json=current_survey)
+        assert res.status_code == 200
+        new_current_survey = {**res.json(), **current_survey}
+        assert res.json() == new_current_survey
+
+    def test_change_title_description_beginningdate_current_survey(self):
+        current_survey = {
+            "title": "test_title_change_2",
+            "description": "test_description_change_2",
+            "beginning_date": past_time_4_minutes}
+        res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
+                             json=current_survey)
+        assert res.status_code == 200
+        new_current_survey = {**res.json(), **current_survey}
+        #assert res.json() == new_current_survey
+        print(new_current_survey)
+
