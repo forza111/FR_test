@@ -1,23 +1,22 @@
 import requests
 import pytest
 from requests.auth import HTTPBasicAuth
-
+import datetime
 
 API_URL = 'http://127.0.0.1:8000'
 ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = 'admin'
-import datetime
 basicAuth = HTTPBasicAuth(ADMIN_PASSWORD, ADMIN_PASSWORD)
 
 
 current_time = datetime.datetime.utcnow()
 
-past_time_1_day = (current_time - datetime.timedelta(days=1)).isoformat()
-past_time_4_minutes = (current_time - datetime.timedelta(minutes=4)).isoformat()
-past_time_5_minutes = (current_time - datetime.timedelta(minutes=5)).isoformat()
+past_time_1_day = (current_time - datetime.timedelta(days=1)).isoformat() + 'Z'
+past_time_4_minutes = (current_time - datetime.timedelta(minutes=4)).isoformat() + 'Z'
+past_time_5_minutes = (current_time - datetime.timedelta(minutes=5)).isoformat() + 'Z'
 
-future_time_1_day = (current_time + datetime.timedelta(days=1)).isoformat()
-future_time_2_day = (current_time + datetime.timedelta(days=2)).isoformat()
+future_time_1_day = (current_time + datetime.timedelta(days=1)).isoformat() + 'Z'
+future_time_2_day = (current_time + datetime.timedelta(days=2)).isoformat() + 'Z'
 
 
 
@@ -25,32 +24,32 @@ database = {
     'normal_survey': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(current_time.isoformat()),
-        "completion_date": str(future_time_1_day),
+        "beginning_date": current_time.isoformat() + 'Z',
+        "completion_date": future_time_1_day,
     },
     'past_survey_1_day_ago': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(past_time_1_day),
-        "completion_date": str(future_time_1_day),
+        "beginning_date": past_time_1_day,
+        "completion_date": future_time_1_day,
     },
     'past_survey_5_minutes_ago': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(past_time_5_minutes),
-        "completion_date": str(future_time_1_day),
+        "beginning_date": past_time_5_minutes,
+        "completion_date": future_time_1_day,
     },
     'past_survey_4_minutes_ago': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(past_time_4_minutes),
-        "completion_date": str(future_time_1_day),
+        "beginning_date": past_time_4_minutes,
+        "completion_date": future_time_1_day,
     },
     'future_survey': {
         "title": "test_title",
         "description": "test_description",
-        "beginning_date": str(future_time_1_day),
-        "completion_date": str(future_time_2_day),
+        "beginning_date": future_time_1_day,
+        "completion_date": future_time_2_day,
     },
 
 }
@@ -116,20 +115,19 @@ class TestDate():
         assert res.status_code == 200
         assert res.json()['title'] == database['normal_survey']['title']
         assert res.json()['description'] == database['normal_survey']['description']
-        assert res.json()['beginning_date'][:-1] == database['normal_survey']['beginning_date']
+        assert res.json()['beginning_date'] == database['normal_survey']['beginning_date']
 
     def test_get_future_survey(self):
         res = requests.get(API_URL + '/api/survey/%d' % id['future_survey'])
         assert res.status_code == 404
 
-    def change_current_survey(self):
+    '''def test_change_current_survey(self):
         current_survey = {
         "title": "test_title_change",
         "description": "test_description_change",
-        "beginning_date": str(current_time.isoformat()),
-        "completion_date": str(future_time_1_day),
+        "completion_date": future_time_1_day,
         }
-        res = requests.patch(API_URL + '/api/change_survey/%d' % id['normal_survey'],
-                             json = current_survey)
-        assert res.status_code == 201
-        assert res.json() == database['normal_survey']
+        res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
+                             json=current_survey)
+        assert res.status_code == 200
+        assert res.json() == current_survey'''

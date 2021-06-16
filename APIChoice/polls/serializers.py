@@ -31,7 +31,7 @@ class QuestionDetailSerializer(serializers.ModelSerializer):
 
 class SurveyDetailSerializer(serializers.ModelSerializer):
     '''Подробная информация о опросе'''
-    quest = QuestionDetailSerializer(many=True, read_only = True)
+    quest = QuestionDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = Survey
@@ -54,6 +54,7 @@ class SurveyCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Survey
         fields = "__all__"
+
 
 
 class QuestionnaireListSerializer(serializers.ModelSerializer):
