@@ -19,7 +19,6 @@ future_time_1_day = (current_time + datetime.timedelta(days=1)).isoformat() + 'Z
 future_time_2_day = (current_time + datetime.timedelta(days=2)).isoformat() + 'Z'
 
 
-
 database = {
     'normal_survey': {
         "title": "test_title",
@@ -103,9 +102,6 @@ def create_future_survey():
 
 
 
-
-
-
 @pytest.mark.usefixtures('create_normal_survey','create_past_survey_1_day_ago',
                          'create_past_survey_5_minutes_ago','create_past_survey_4_minutes_ago',
                          'create_future_survey')
@@ -147,7 +143,7 @@ class TestDate():
         res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
                              json=current_survey)
         assert res.status_code == 200
-        new_current_survey = {**res.json(), **current_survey}
-        print(res.status_code)
-        print(res.json())
+        #new_current_survey - словарь с измененными title, descriptions, но первоначальным beginning_date
+        new_current_survey = {**res.json(), **current_survey, **{'beginning_date': database['normal_survey']['beginning_date']}}
+        assert res.json() == new_current_survey
 
