@@ -2,7 +2,9 @@ from django.contrib import admin
 from .models import Survey, Question, Choice, TypeQuestion, Questionnaire, Answer
 from rest_framework import viewsets
 from .serializers import SurveyListSerializer, SurveyCreateSerializer,\
-    SurveyDetailSerializer, QuestionForAnswerSerializer, ChoiceListSerializer
+    SurveyDetailSerializer, QuestionForAnswerSerializer, ChoiceListSerializer,\
+    TypeQuestionViewSet
+
 from rest_framework import permissions,authentication
 
 admin.site.register(Survey)
@@ -48,4 +50,7 @@ class AdminChoiceViewSet(AdminModelViewSet):
     queryset = Choice.objects.all()
     serializer_class = ChoiceListSerializer
 
-
+class AdminTypeQuestionViewSet(AdminModelViewSet):
+    '''Тип вопроса'''
+    queryset = TypeQuestion.objects.all()
+    serializer_class = TypeQuestionViewSet

@@ -100,6 +100,15 @@ def create_future_survey():
     rs = requests.delete(API_URL + '/api/admin/change_survey/%d' % id['future_survey'], auth=basicAuth)
     assert rs.status_code == 204
 
+@pytest.fixture()
+def create
+
+
+
+
+
+
+
 
 
 @pytest.mark.usefixtures('create_normal_survey','create_past_survey_1_day_ago',
@@ -157,5 +166,9 @@ class TestDate():
                              json=current_survey)
         assert res.status_code == 200
         #new_current_survey - словарь с измененными title, descriptions, completion_date но первоначальным beginning_date
-        new_current_survey = {**res.json(), **current_survey, **{'beginning_date': database['normal_survey']['beginning_date']}}
+        new_current_survey = {
+            **res.json(),
+            **current_survey,
+            **{'beginning_date': database['normal_survey']['beginning_date']}
+        }
         assert res.json() == new_current_survey

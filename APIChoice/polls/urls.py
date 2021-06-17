@@ -25,6 +25,9 @@ urlpatterns = ([
     path("admin/change_choice/<int:pk>", admin.AdminChoiceViewSet.as_view({'patch': 'partial_update',
                                                                            "get":"retrieve",
                                                                            "delete": "destroy"})),
+    path("admin/type_question",admin.AdminTypeQuestionViewSet.as_view({'get': 'list'})),
+    path("admin/create_type_question", admin.AdminTypeQuestionViewSet.as_view({'post': 'create'})),
+
 ])
 
 

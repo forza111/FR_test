@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Survey, Questionnaire, Answer, Question, Choice
+from .models import Survey, Questionnaire, Answer, Question, Choice, TypeQuestion
 
 
 class ChoiceListSpecificsSerializer(serializers.ModelSerializer):
@@ -136,3 +136,10 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
             if '1' not in value:
                 raise serializers.ValidationError("Ошибка")
             return value
+
+
+class TypeQuestionViewSet(serializers.ModelSerializer):
+
+    class Meta:
+        model = TypeQuestion
+        fields = '__all__'

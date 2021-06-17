@@ -33,7 +33,6 @@ def change_prohibition_beginning_date(sender, instance, **kwargs):
 
 
 
-
 class TypeQuestion(models.Model):
     title = models.CharField("Тип вопроса", max_length=100)
 
