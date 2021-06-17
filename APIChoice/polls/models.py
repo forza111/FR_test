@@ -10,16 +10,27 @@ class Survey(models.Model):
     completion_date = models.DateTimeField("Окончание опроса")
 
     def save(self, *args, **kwargs):
-        date_five_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
-        if self.beginning_date.isoformat() < date_five_minutes_ago.isoformat():
-            raise AttributeError("Дата начала опроса не должна превышать 5 минутный интервал "
-                                 "от текущей даты")
-        elif self.beginning_date > self.completion_date:
+        if self.beginning_date > self.completion_date:
             raise AttributeError("Дата начала опроса не может быть позже даты завершения.")
         super(Survey, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
+@receiver(pre_save, sender=Survey)
+def change_prohibition_beginning_date(sender, instance, **kwargs):
+    try:
+        obj = Survey.objects.get(pk=instance.id)
+    except sender.DoesNotExist:
+        date_five_minutes_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
+        if instance.beginning_date.isoformat() < date_five_minutes_ago.isoformat():
+            raise AttributeError("Дата начала опроса не должна превышать 5 минутный интервал "
+                                 "от текущей даты") #Если объекта не существует, делаем ограничение
+    else:
+        if not obj.beginning_date == instance.beginning_date:
+            raise AttributeError('beginning_date should not be modified')
+        #Если объект есть в БД, запрещаем менять beginning_date
+
 
 
 

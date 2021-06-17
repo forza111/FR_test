@@ -148,6 +148,6 @@ class TestDate():
                              json=current_survey)
         assert res.status_code == 200
         new_current_survey = {**res.json(), **current_survey}
-        #assert res.json() == new_current_survey
-        print(new_current_survey)
+        print(res.status_code)
+        print(res.json())
 
