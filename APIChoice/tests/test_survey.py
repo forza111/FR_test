@@ -147,3 +147,15 @@ class TestDate():
         new_current_survey = {**res.json(), **current_survey, **{'beginning_date': database['normal_survey']['beginning_date']}}
         assert res.json() == new_current_survey
 
+    def test_change_title_description_beginningdate_completiondate_current_survey(self):
+        current_survey = {
+            "title": "test_title_change_2",
+            "description": "test_description_change_2",
+            "beginning_date": past_time_4_minutes,
+            "completion_date": future_time_2_day}
+        res = requests.patch(API_URL + '/api/admin/change_survey/%d' % id['normal_survey'],auth=basicAuth,
+                             json=current_survey)
+        assert res.status_code == 200
+        #new_current_survey - словарь с измененными title, descriptions, completion_date но первоначальным beginning_date
+        new_current_survey = {**res.json(), **current_survey, **{'beginning_date': database['normal_survey']['beginning_date']}}
+        assert res.json() == new_current_survey
