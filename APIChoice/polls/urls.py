@@ -27,6 +27,9 @@ urlpatterns = ([
                                                                            "delete": "destroy"})),
     path("admin/type_question",admin.AdminTypeQuestionViewSet.as_view({'get': 'list'})),
     path("admin/create_type_question", admin.AdminTypeQuestionViewSet.as_view({'post': 'create'})),
+    path("admin/change_type_question/<int:pk>", admin.AdminTypeQuestionViewSet.as_view({'patch': 'partial_update',
+                                                                           "get":"retrieve",
+                                                                           "delete": "destroy"})),
 
 ])
 
