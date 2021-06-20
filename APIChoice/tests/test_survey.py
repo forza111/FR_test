@@ -19,6 +19,9 @@ future_time_1_day = (current_time + datetime.timedelta(days=1)).isoformat() + 'Z
 future_time_2_day = (current_time + datetime.timedelta(days=2)).isoformat() + 'Z'
 
 
+id = {}
+
+
 database = {
     'normal_survey': {
         "title": "test_title",
@@ -54,12 +57,17 @@ database = {
         "текстовый": {"title": "текстовый"},
         "выбор": {"title": "выбор"},
         "мультивыбор": {"title": "мультивыбор"}
+    },
+    "question_1": {
+        "number_question": 1,
+        "question_text": "question_tet_1",
+        "type_question": id['type_question_choice'],
+        "survey": id["normal_survey"]
     }
 
 }
 
 
-id = {}
 
 @pytest.fixture
 def create_normal_survey():
@@ -134,6 +142,16 @@ def create_type_question():
     rs3 = requests.delete(API_URL + '/api/admin/change_type_question/%d' % id['type_question_multiselection'], auth=basicAuth)
     assert rs3.status_code == 204
 
+@pytest.fixture()
+def create_question():
+    res = requests.post(API_URL + '/api/admin/create_question/',
+                        auth=basicAuth, json=database['question_1'])
+    assert res.status_code == 201
+    data = res.json()
+    id['question_1'] = data['id']
+    yield
+    rs = requests.delete(API_URL + '/api/admin/change_question/%d' % id['question_1'], auth=basicAuth)
+    assert rs.status_code == 204
 
 
 @pytest.mark.usefixtures('create_normal_survey','create_past_survey_1_day_ago',
