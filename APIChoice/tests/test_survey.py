@@ -51,9 +51,9 @@ database = {
         "completion_date": future_time_2_day,
     },
     'type_question': {
-        "текстовый": "текстовый",
-        "выбор": "выбор",
-        "мультивыбор": "мультивыбор"
+        "текстовый": {"title": "текстовый"},
+        "выбор": {"title": "выбор"},
+        "мультивыбор": {"title": "мультивыбор"}
     }
 
 }
@@ -108,14 +108,14 @@ def create_future_survey():
 
 @pytest.fixture()
 def create_type_question():
-    res1 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth, json={"title":
-        database['type_question']['текстовый']})
+    res1 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth,
+                         json=database['type_question']['текстовый'])
     assert res1.status_code == 201
-    res2 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth, json={"title":
-        database['type_question']['выбор']})
+    res2 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth,
+                         json=database['type_question']['выбор'])
     assert res1.status_code == 201
-    res3 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth, json={"title":
-        database['type_question']['мультивыбор']})
+    res3 = requests.post(API_URL + '/api/admin/create_type_question/', auth=basicAuth,
+                         json=database['type_question']['мультивыбор'])
     assert res1.status_code == 201
 
     data1 = res1.json()
@@ -127,11 +127,11 @@ def create_type_question():
 
     yield
 
-    rs1=requests.delete(API_URL + '/api/admin/change_type_question/&d' % id['type_question_text'], auth=basicAuth)
+    rs1 = requests.delete(API_URL + '/api/admin/change_type_question/%d' % id['type_question_text'], auth=basicAuth)
     assert rs1.status_code == 204
-    rs2=requests.delete(API_URL + '/api/admin/change_type_question/&d' % id['type_question_choice'], auth=basicAuth)
+    rs2 = requests.delete(API_URL + '/api/admin/change_type_question/%d' % id['type_question_choice'], auth=basicAuth)
     assert rs2.status_code == 204
-    rs3=requests.delete(API_URL + '/api/admin/change_type_question/&d' % id['type_question_multiselection'], auth=basicAuth)
+    rs3 = requests.delete(API_URL + '/api/admin/change_type_question/%d' % id['type_question_multiselection'], auth=basicAuth)
     assert rs3.status_code == 204
 
 
@@ -197,3 +197,26 @@ class TestDate():
             **{'beginning_date': database['normal_survey']['beginning_date']}
         }
         assert res.json() == new_current_survey
+
+
+    def test_get_type_question(self):
+        res1 = requests.get(API_URL + "/api/admin/type_question/%d" % id["type_question_text"], auth=basicAuth)
+        assert res1.status_code == 200
+        assert res1.json()["title"] == database["type_question"]["текстовый"]["title"]
+
+        res2 = requests.get(API_URL + "/api/admin/type_question/%d" % id["type_question_choice"], auth=basicAuth)
+        assert res2.status_code == 200
+        assert res2.json()["title"] == database["type_question"]["выбор"]["title"]
+
+        res3 = requests.get(API_URL + "/api/admin/type_question/%d" % id["type_question_multiselection"], auth=basicAuth)
+        assert res3.status_code == 200
+        assert res3.json()["title"] == database["type_question"]["мультивыбор"]["title"]
+
+    def test_change_type_question(self):
+        type_question = {"title": "text_change"}
+        res = requests.patch(
+            API_URL + '/api/admin/change_type_question/%d' % id['type_question_text'],
+            auth=basicAuth,
+            json=type_question)
+        assert res.status_code == 200
+        assert res.json()["title"] == type_question["title"]
